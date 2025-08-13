@@ -16,6 +16,12 @@ public class User {
 		
 	}
 
+	public User(String name, String password) {
+		super();
+		this.name = name;
+		this.password = password;
+	}
+
 	public User(String mail, String name, String phone, String password) {
 		super();
 		this.mail = mail;

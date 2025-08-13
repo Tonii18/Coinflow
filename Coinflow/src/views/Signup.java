@@ -2,7 +2,6 @@ package views;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -25,37 +23,23 @@ import roundedComponents.RoundButton;
 import roundedComponents.RoundPanel;
 import roundedComponents.RoundTextField;
 
-public class Login extends JFrame {
+public class Signup extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	private JButton login;
 	private JButton signup;  
 	private JTextField username;
+	private JTextField email;
+	private JTextField phone;
 	private JPasswordField password;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JButton back;
 
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
-		setTitle("Inicia sesion en tu cuenta de Coinflow");
+	public Signup() {
+		setTitle("Crea tu cuenta de Coinflow");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1440, 1024);
@@ -68,39 +52,37 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		back = new JButton("");
+		back.setContentAreaFilled(false);
+		back.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		back.setBorder(null);
+		back.setBounds(10, 11, 50, 50);
+		back.setIcon(new ImageIcon(getClass().getResource("/arrow-back.png")));
+		contentPane.add(back);
+		
 		JPanel loginPanel = new RoundPanel(15, 15);
 		loginPanel.setBackground(new Color(255, 255, 255));
 		loginPanel.setBounds(507, 249, 410, 486);
 		contentPane.add(loginPanel);
 		loginPanel.setLayout(null);
 		
-		login = new RoundButton("Iniciar sesión", 10, 10);
-		login.setFocusable(false);
-		login.setBorder(null);
-		login.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		login.setForeground(new Color(255, 255, 255));
-		login.setBackground(new Color(252, 163, 17));
-		login.setFont(new Font("Inter", Font.BOLD, 17));
-		login.setBounds(28, 330, 354, 60);
-		loginPanel.add(login);
-		
 		signup = new RoundButton("Registrarme", 10, 10);
 		signup.setBorderPainted(true);
-		signup.setForeground(new Color(252, 163, 17));
+		signup.setForeground(new Color(255, 255, 255));
 		signup.setFont(new Font("Inter", Font.BOLD, 17));
 		signup.setFocusable(false);
 		signup.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		signup.setBorder(null);
-		signup.setBackground(new Color(255, 255, 255));
+		signup.setBackground(new Color(252, 163, 17));
 		((RoundButton) signup).setCustomBorderColor(new Color(252, 163, 17));
-		signup.setBounds(28, 402, 354, 60);
+		signup.setBounds(28, 395, 354, 60);
 		loginPanel.add(signup);
 		
 		username = new RoundTextField(10, 10, 10);
 		username.setHorizontalAlignment(SwingConstants.CENTER);
 		username.setFont(new Font("Inter", Font.PLAIN, 20));
 		username.setBackground(new Color(217, 217, 217));
-		username.setBounds(28, 45, 354, 60);
+		username.setBounds(28, 122, 354, 60);
 		loginPanel.add(username);
 		username.setColumns(10);
 		
@@ -109,14 +91,24 @@ public class Login extends JFrame {
 		password.setHorizontalAlignment(SwingConstants.CENTER);
 		password.setFont(new Font("Inter", Font.PLAIN, 20));
 		password.setBackground(new Color(217, 217, 217));
-		password.setBounds(28, 116, 354, 60);
+		password.setBounds(28, 304, 354, 60);
 		loginPanel.add(password);
 		
-		JSeparator separator = new JSeparator();
-		separator.setForeground(new Color(217, 217, 217));
-		separator.setBackground(new Color(217, 217, 217));
-		separator.setBounds(28, 251, 354, 1);
-		loginPanel.add(separator);
+		email = new RoundTextField(10, 10, 10);
+		email.setHorizontalAlignment(SwingConstants.CENTER);
+		email.setFont(new Font("Inter", Font.PLAIN, 20));
+		email.setColumns(10);
+		email.setBackground(new Color(217, 217, 217));
+		email.setBounds(28, 31, 354, 60);
+		loginPanel.add(email);
+		
+		phone = new RoundTextField(10, 10, 10);
+		phone.setHorizontalAlignment(SwingConstants.CENTER);
+		phone.setFont(new Font("Inter", Font.PLAIN, 20));
+		phone.setColumns(10);
+		phone.setBackground(new Color(217, 217, 217));
+		phone.setBounds(28, 213, 354, 60);
+		loginPanel.add(phone);
 		
 		JLabel title = new JLabel("Bienvenido a Coinflow");
 		title.setForeground(new Color(255, 255, 255));
@@ -131,12 +123,11 @@ public class Login extends JFrame {
 		contentPane.add(logo);
 		
 		JLabel background = new JLabel("");
-		background.setBackground(new Color(216, 216, 216));
 		background.setBounds(-8, -19, 1440, 1024);
 		background.setIcon(new ImageIcon(getClass().getResource("/background.png")));
 		contentPane.add(background);
 		
-		login.addActionListener(new buttons());
+		back.addActionListener(new buttons());
 		signup.addActionListener(new buttons());
 
 	}
@@ -146,34 +137,32 @@ public class Login extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			JButton button = (JButton)e.getSource();
 			
-			if(button == login) {
-				login();
+			if(button == back) {
+				back();
 			}else if(button == signup) {
 				signup();
 			}
 		}
-		
-	}
-	
-	public void login() {
-		String name = username.getText();
-		String pass = new String(password.getPassword());
-		
-		User u = new User(name, pass);
-		
-		if(DBManager.login(u)) {
-			JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente");
-		}else {
-			JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
-			username.setText("");
-			password.setText("");
-			username.requestFocusInWindow();
-		}
 	}
 	
 	public void signup() {
-		Signup s = new Signup();
-		s.setVisible(true);
+		String mail = email.getText();
+		String name = username.getText();
+		String phonenumber = phone.getText();
+		String pass = new String(password.getPassword());
+		
+		User u = new User(mail, name, phonenumber, pass);
+		
+		if(DBManager.register(u)) {
+			JOptionPane.showMessageDialog(null, "Has creado tu cuenta correctamente");
+		}else {
+			JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+		}
+	}
+	
+	public void back() {
+		Login l = new Login();
+		l.setVisible(true);
 		dispose();
 	}
 }
