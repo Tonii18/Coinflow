@@ -155,6 +155,9 @@ public class Signup extends JFrame {
 		
 		if(DBManager.register(u)) {
 			JOptionPane.showMessageDialog(null, "Has creado tu cuenta correctamente");
+			InitialHome init = new InitialHome(u);
+			init.setVisible(true);
+			dispose();
 		}else {
 			JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
 		}

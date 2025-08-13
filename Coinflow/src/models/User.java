@@ -11,6 +11,7 @@ public class User {
 	private String password;
 	private double balance;
 	private double balanceLimit;
+	private double alertAmount;
 	
 	public User() {
 		
@@ -49,6 +50,18 @@ public class User {
 		this.password = password;
 		this.balance = balance;
 		this.balanceLimit = balanceLimit;
+	}
+
+	public User(String mail, String name, String phone, String password, double balance, double balanceLimit,
+			double alertAmount) {
+		super();
+		this.mail = mail;
+		this.name = name;
+		this.phone = phone;
+		this.password = password;
+		this.balance = balance;
+		this.balanceLimit = balanceLimit;
+		this.alertAmount = alertAmount;
 	}
 
 	public int getId() {
@@ -105,6 +118,14 @@ public class User {
 
 	public void setBalanceLimit(double balanceLimit) {
 		this.balanceLimit = balanceLimit;
+	}
+
+	public double getAlertAmount() {
+		return alertAmount;
+	}
+
+	public void setAlertAmount(double alertAmount) {
+		this.alertAmount = alertAmount;
 	}
 
 	@Override
