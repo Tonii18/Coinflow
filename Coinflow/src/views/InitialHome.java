@@ -121,12 +121,17 @@ public class InitialHome extends JFrame {
 		
 		if(DBManager.setBalance(u, balance)) {
 			JOptionPane.showMessageDialog(null, "Saldo ingresado correctamente");
+			Home h = new Home(u);
+			h.setVisible(true);
+			dispose();
 		}else {
 			JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
 		}
 	}
 	
 	public void openSettings() {
-		
+		Setting s = new Setting();
+		s.setVisible(true);
+		dispose();
 	}
 }

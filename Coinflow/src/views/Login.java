@@ -163,6 +163,9 @@ public class Login extends JFrame {
 		
 		if(DBManager.login(u)) {
 			JOptionPane.showMessageDialog(null, "Has iniciado sesion correctamente");
+			Home h = new Home(u);
+			h.setVisible(true);
+			dispose();
 		}else {
 			JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
 			username.setText("");

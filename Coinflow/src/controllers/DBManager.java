@@ -123,5 +123,31 @@ public class DBManager {
 		
 		return true;
 	}
+	
+	// Get the balance from an user
+	
+	public static double getBalance(User u) {
+		double balance = 0.00;
+		
+		String sql = "SELECT balance FROM users WHERE id = ?";
+		
+		try {
+			Connection conn = Connectiondb.obtener();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, getId(u));
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				balance = rs.getDouble("balance");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return balance;
+	}
 
 }
